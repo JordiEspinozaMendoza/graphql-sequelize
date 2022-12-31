@@ -1,0 +1,1 @@
+# Graphql and Sequelize integration
