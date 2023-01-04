@@ -9,8 +9,12 @@ const { User } = require("../../database/models");
 module.exports = {
   Mutation: {
     async register(root, args, context) {
-      const { name, email, password } = args.input;
-      return User.create({ name, email, password });
+      try {
+        const { name, email, password } = args.input;
+        return User.create({ name, email, password });
+      } catch (error) {
+        throw new AuthenticationError("Invalid credentials");
+      }
     },
     async login(root, { input }, context) {
       const { email, password } = input;
